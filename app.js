@@ -151,10 +151,29 @@
             // });
 
             //another wholesome example
-            fs.mkdir('stuff3', function(){
-                fs.readFile('readme.txt', 'utf8', function(err, data){
-                    fs.writeFile('./stuff3/writeme.txt', data, function(){
-                        console.log('directory has been created, file created and contents written to it')
-                    });
+                // fs.mkdir('stuff3', function(){
+                //     fs.readFile('readme.txt', 'utf8', function(err, data){
+                //         fs.writeFile('./stuff3/writeme.txt', data, function(){
+                //             console.log('directory has been created, file created and contents written to it')
+                //         });
+                //     });
+                // })
+
+            //delete directory async - should be empty to be deleted
+            
+                lets first delete files in that directory
+                fs.unlink('./stuff3/writeme.txt', function(err){
+                    if(err){
+                        console.log('Error in deleting file');
+                    }else{
+                        console.log('file deleted');
+                    }
+                })
+                //lets now delete
+                fs.rmdir('stuff3', function(err){
+                    if(err){
+                        console.log('Error occured');
+                    }else{
+                        console.log('directory deleted');
+                    }
                 });
-            })
