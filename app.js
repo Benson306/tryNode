@@ -161,7 +161,7 @@
 
             //delete directory async - should be empty to be deleted
             
-                lets first delete files in that directory
+                //lets first delete files in that directory
                 fs.unlink('./stuff3/writeme.txt', function(err){
                     if(err){
                         console.log('Error in deleting file');
