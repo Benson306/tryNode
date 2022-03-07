@@ -95,3 +95,66 @@
 //     mary.emit('speak', 'Fuck you');
 
 //Reading and writing files
+    //Reading Files
+        // let fs = require('fs');
+
+        // let readme = fs.readFileSync('readme.txt', 'utf8');
+
+        //console.log(readme);
+    
+    //Write files
+        //take contents of the file we've read above and copy it contents to another file
+
+        // fs.writeFileSync('writeme.txt', readme);
+
+    //async way of reading and writing files
+        //reading files asynchronously requires a callback fxn that is to be called when the read file process completes
+            // let fs = require('fs');
+
+            // fs.readFile('readme.txt', 'utf8', function(err, data){
+            // console.log(data);
+            // })
+
+            // console.log('testing read async');//this will run b4 the file is read
+        
+        //writing files asynchronously
+
+            // fs.writeFile('writeup.txt','wozzap', function(err, data){
+            //     console.log('written to file succesfully');
+            // }); // must have a callback fxn coz its assynchronous
+            // console.log('testing write async')
+
+//Creating and removing directories
+    let fs = require('fs');
+
+    //removing files
+        // fs.unlink('delete.txt', function(err){
+        //     if(err){
+        //         console.log('Something went wrong');
+        //     }else{
+        //         console.log('deleted');
+        //     }
+        // }); //requires a callback fxn - can be empty or can confirm whether it went succesfully or not
+
+    //creating a directory
+        //fs.mkdirSync('stuff1');
+    //removing directories
+        //fs.rmdirSync('stuff');
+
+        //creating directories asynchronously 
+            // fs.mkdir('stuff2',function(err){
+            //     if(err){
+            //         console.log('Problem occured creating directory');
+            //     }else{
+            //         console.log('directory succesfully created');
+            //     }
+            // });
+
+            //another wholesome example
+            fs.mkdir('stuff3', function(){
+                fs.readFile('readme.txt', 'utf8', function(err, data){
+                    fs.writeFile('./stuff3/writeme.txt', data, function(){
+                        console.log('directory has been created, file created and contents written to it')
+                    });
+                });
+            })
