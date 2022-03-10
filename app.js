@@ -281,45 +281,64 @@
             // console.log('Now listening to port 3000');
 
 //Basic Routing
-            let fs = require('fs'); 
-            let http = require('http');
-            var server = http.createServer(function(req, res){
-                console.log('request was made: '+ req.url);
-                if(req.url === '/home' || req.url === '/'){
-                    res.writeHead(200, {'Content-Type':'text/html' });
-                    fs.createReadStream(__dirname+'/index.html').pipe(res);
-                }else if(req.url === '/contact'){
-                    res.writeHead(200, {'Content-Type':'text/html' });
-                    fs.createReadStream(__dirname+'/contact.html').pipe(res);
-                }else if(req.url === '/api/users/1'){
-                    res.writeHead(200, {'Content-Type':'application/json' });
-                    newObj = [
-                        {
-                            name: 'Ben',
-                            YOB: '1999-01-31',
-                            KCSE_GRADE: 'B (63pts)',
-                            marks: 10
-                        },
-                        {
-                            name: 'Abu',
-                            YOB: '1997-06-30',
-                            KCSE_GRADE: 'B (63pts)',
-                            marks: 9
-                        },
-                        {
-                            name: 'Eliud',
-                            YOB: '1994-03-27',
-                            KCSE_GRADE: 'A- (72pts)',
-                            marks: 12
-                        }
-                    ];
-                    res.end(JSON.stringify(newObj));
-                }else{
-                    res.writeHead(404, {'Content-Type':'text/plain' });
-                    res.end('404 error. Page Does Not exist');
-                }
-            });
+            // let fs = require('fs'); 
+            // let http = require('http');
+            // var server = http.createServer(function(req, res){
+            //     console.log('request was made: '+ req.url);
+            //     if(req.url === '/home' || req.url === '/'){
+            //         res.writeHead(200, {'Content-Type':'text/html' });
+            //         fs.createReadStream(__dirname+'/index.html').pipe(res);
+            //     }else if(req.url === '/contact'){
+            //         res.writeHead(200, {'Content-Type':'text/html' });
+            //         fs.createReadStream(__dirname+'/contact.html').pipe(res);
+            //     }else if(req.url === '/api/users/1'){
+            //         res.writeHead(200, {'Content-Type':'application/json' });
+            //         newObj = [
+            //             {
+            //                 name: 'Ben',
+            //                 YOB: '1999-01-31',
+            //                 KCSE_GRADE: 'B (63pts)',
+            //                 marks: 10
+            //             },
+            //             {
+            //                 name: 'Abu',
+            //                 YOB: '1997-06-30',
+            //                 KCSE_GRADE: 'B (63pts)',
+            //                 marks: 9
+            //             },
+            //             {
+            //                 name: 'Eliud',
+            //                 YOB: '1994-03-27',
+            //                 KCSE_GRADE: 'A- (72pts)',
+            //                 marks: 12
+            //             }
+            //         ];
+            //         res.end(JSON.stringify(newObj));
+            //     }else{
+            //         res.writeHead(404, {'Content-Type':'text/plain' });
+            //         res.end('404 error. Page Does Not exist');
+            //     }
+            // });
 
-            server.listen(3000,'127.0.0.1');
+            // server.listen(3000,'127.0.0.1');
 
-            console.log('Now listening to port 3000');
+            // console.log('Now listening to port 3000');
+
+//Node Package Manager(npm) - install, update and come up with our own packages
+        //for express - npm install express
+    let express = require('express');
+    const res = require('express/lib/response');
+
+    let app = express();
+
+    app.get('/', function(req, res){
+        res.send('Hello Express');
+    })
+    app.get('/home', function(req, res){
+        res.send('Hello Home');
+    })
+
+
+
+    app.listen(3000);
+    console.log('Listening on Port 3000');
