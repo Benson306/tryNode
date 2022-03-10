@@ -201,9 +201,9 @@
     //streams and buffers increase perfomance of our apps
 
     //Readable streams - allow nodeJS to read data from a stream
-let fs = require('fs');
+// let fs = require('fs');
 
-let myReadStream = fs.createReadStream(__dirname+'/lorem.txt', 'utf8');
+// let myReadStream = fs.createReadStream(__dirname+'/lorem.txt', 'utf8');
 
 // myReadStream.on('data', function(chunk){
 //     console.log('New Chunk Received:');
@@ -212,35 +212,114 @@ let myReadStream = fs.createReadStream(__dirname+'/lorem.txt', 'utf8');
 
     //Writble streams - allow nodeJS to write/send data to a stream
 
-let myWriteStream = fs.createWriteStream(__dirname+'/writeStream.txt');
+// let myWriteStream = fs.createWriteStream(__dirname+'/writeStream.txt');
 
         //Lets now write every chuk thats has been read from above readstream line by line
-            myReadStream.on('data', function(chunk){
-                console.log('New Chunk Received:');
-                myWriteStream.write(chunk);
-                //console.log(chunk);
-            });
+            // myReadStream.on('data', function(chunk){
+            //     console.log('New Chunk Received:');
+            //     myWriteStream.write(chunk);
+            //     //console.log(chunk);
+            // });
 
     //Duplex - can read and write to a stream
 
 //Pipes - takes data from a read stream and pipes it into a write stream
-let myReadPipeStream = fs.createReadStream(__dirname+'/readPipe.txt', 'utf8');
-let myWritePipeStream = fs.createWriteStream(__dirname+'/writePipe.txt');
+    // let myReadPipeStream = fs.createReadStream(__dirname+'/readPipe.txt', 'utf8');
+    // let myWritePipeStream = fs.createWriteStream(__dirname+'/writePipe.txt');
 
-myReadPipeStream.pipe(myWritePipeStream);
+    // myReadPipeStream.pipe(myWritePipeStream);
 
     //lets now send data from a redable stream to a user
-    let http = require('http');
-    var server = http.createServer(function(req, res){
-        console.log('request was made: '+ req.url);
+            // let http = require('http');
+            // var server = http.createServer(function(req, res){
+            //     console.log('request was made: '+ req.url);
 
-        res.writeHead(200, {'Content-Type':'text/plain' });
+            //     res.writeHead(200, {'Content-Type':'text/plain' });
 
-        let myReadPipeStream1 = fs.createReadStream(__dirname+'/readPipe.txt', 'utf8'); //Reading file stream
+            //     let myReadPipeStream1 = fs.createReadStream(__dirname+'/readPipe.txt', 'utf8'); //Reading file stream
 
-        myReadPipeStream1.pipe(res);
-    });
+            //     myReadPipeStream1.pipe(res);
+            // });
 
-    server.listen(3000,'127.0.0.1');
+            // server.listen(3000,'127.0.0.1');
 
-    console.log('Now listening to port 3000');
+            // console.log('Now listening to port 3000');
+
+//serving html Pages
+            // let http = require('http');
+            // var server = http.createServer(function(req, res){
+            //     console.log('request was made: '+ req.url);
+
+            //     res.writeHead(200, {'Content-Type':'text/html' });
+
+            //     let myReadPipeStream1 = fs.createReadStream(__dirname+'/index.html', 'utf8'); //Reading file stream
+
+            //     myReadPipeStream1.pipe(res);
+            // });
+
+            // server.listen(3000,'127.0.0.1');
+
+            // console.log('Now listening to port 3000');
+
+//Serving JSON
+            // let http = require('http');
+            // var server = http.createServer(function(req, res){
+            //     console.log('request was made: '+ req.url);
+
+            //     res.writeHead(200, {'Content-Type':'application/json' });
+            //     let myObj = {
+            //         name : 'Ben',
+            //         job: 'Ninja',
+            //         age: 29
+            //     };
+            //     res.end(JSON.stringify(myObj));
+                
+            // });
+
+            // server.listen(3000,'127.0.0.1');
+
+            // console.log('Now listening to port 3000');
+
+//Basic Routing
+            let fs = require('fs'); 
+            let http = require('http');
+            var server = http.createServer(function(req, res){
+                console.log('request was made: '+ req.url);
+                if(req.url === '/home' || req.url === '/'){
+                    res.writeHead(200, {'Content-Type':'text/html' });
+                    fs.createReadStream(__dirname+'/index.html').pipe(res);
+                }else if(req.url === '/contact'){
+                    res.writeHead(200, {'Content-Type':'text/html' });
+                    fs.createReadStream(__dirname+'/contact.html').pipe(res);
+                }else if(req.url === '/api/users/1'){
+                    res.writeHead(200, {'Content-Type':'application/json' });
+                    newObj = [
+                        {
+                            name: 'Ben',
+                            YOB: '1999-01-31',
+                            KCSE_GRADE: 'B (63pts)',
+                            marks: 10
+                        },
+                        {
+                            name: 'Abu',
+                            YOB: '1997-06-30',
+                            KCSE_GRADE: 'B (63pts)',
+                            marks: 9
+                        },
+                        {
+                            name: 'Eliud',
+                            YOB: '1994-03-27',
+                            KCSE_GRADE: 'A- (72pts)',
+                            marks: 12
+                        }
+                    ];
+                    res.end(JSON.stringify(newObj));
+                }else{
+                    res.writeHead(404, {'Content-Type':'text/plain' });
+                    res.end('404 error. Page Does Not exist');
+                }
+            });
+
+            server.listen(3000,'127.0.0.1');
+
+            console.log('Now listening to port 3000');
