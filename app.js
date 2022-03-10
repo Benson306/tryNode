@@ -125,7 +125,7 @@
             // console.log('testing write async')
 
 //Creating and removing directories
-    let fs = require('fs');
+    //let fs = require('fs');
 
     //removing files
         // fs.unlink('delete.txt', function(err){
@@ -162,18 +162,69 @@
             //delete directory async - should be empty to be deleted
             
                 //lets first delete files in that directory
-                fs.unlink('./stuff3/writeme.txt', function(err){
-                    if(err){
-                        console.log('Error in deleting file');
-                    }else{
-                        console.log('file deleted');
-                    }
-                })
+                // fs.unlink('./stuff3/writeme.txt', function(err){
+                //     if(err){
+                //         console.log('Error in deleting file');
+                //     }else{
+                //         console.log('file deleted');
+                //     }
+                // })
                 //lets now delete
-                fs.rmdir('stuff3', function(err){
-                    if(err){
-                        console.log('Error occured');
-                    }else{
-                        console.log('directory deleted');
-                    }
-                });
+                // fs.rmdir('stuff3', function(err){
+                //     if(err){
+                //         console.log('Error occured');
+                //     }else{
+                //         console.log('directory deleted');
+                //     }
+                // });
+
+//Clients and servers
+    //creating a server
+    // let http = require('http');
+
+    // var server = http.createServer(function(req, res){
+    //     console.log('request was made: '+ req.url);
+
+    //     res.writeHead(200, {'Content-Type':'text/plain' });
+    //     res.end('Hey Ninjas');
+    // });
+
+    // server.listen(3000, '127.0.0.1');
+
+    // console.log('Now listening to port 3000');
+
+//streams and buffers
+    //Buffer - is a temporary storage spot for a chunk of data that is being transferred from one place to another. Transfers small chunks of data at a time
+
+    //stream - is a stream of data that flows over time from one place to another
+    
+    //streams and buffers increase perfomance of our apps
+
+    //Readable streams - allow nodeJS to read data from a stream
+let fs = require('fs');
+
+let myReadStream = fs.createReadStream(__dirname+'/lorem.txt', 'utf8');
+
+// myReadStream.on('data', function(chunk){
+//     console.log('New Chunk Received:');
+//     console.log(chunk);
+// });
+
+    //Writble streams - allow nodeJS to write/send data to a stream
+
+let myWriteStream = fs.createWriteStream(__dirname+'/writeStream.txt');
+
+        //Lets now write every chuk thats has been read from above readstream line by line
+            myReadStream.on('data', function(chunk){
+                console.log('New Chunk Received:');
+                myWriteStream.write(chunk);
+                //console.log(chunk);
+            });
+
+
+
+    //Duplex - can read and write to a stream
+
+
+
+
