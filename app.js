@@ -221,10 +221,26 @@ let myWriteStream = fs.createWriteStream(__dirname+'/writeStream.txt');
                 //console.log(chunk);
             });
 
-
-
     //Duplex - can read and write to a stream
 
+//Pipes - takes data from a read stream and pipes it into a write stream
+let myReadPipeStream = fs.createReadStream(__dirname+'/readPipe.txt', 'utf8');
+let myWritePipeStream = fs.createWriteStream(__dirname+'/writePipe.txt');
 
+myReadPipeStream.pipe(myWritePipeStream);
 
+    //lets now send data from a redable stream to a user
+    let http = require('http');
+    var server = http.createServer(function(req, res){
+        console.log('request was made: '+ req.url);
 
+        res.writeHead(200, {'Content-Type':'text/plain' });
+
+        let myReadPipeStream1 = fs.createReadStream(__dirname+'/readPipe.txt', 'utf8'); //Reading file stream
+
+        myReadPipeStream1.pipe(res);
+    });
+
+    server.listen(3000,'127.0.0.1');
+
+    console.log('Now listening to port 3000');
