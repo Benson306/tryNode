@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Benson306/tryNode#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.3"
   }
 }

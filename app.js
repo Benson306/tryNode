@@ -366,4 +366,65 @@
         // server.listen(3000,'127.0.0.1');
         // console.log('Listening on port 3000');
 
-//Intro to Express
+//Intro to Express - routing system
+    let express = require('express');
+
+    let app = express();
+
+    app.get('/home', function(req, res){
+        console.log(`GET ${req.url}`);
+        res.send('Homepage');
+    });
+        //Route Parameters in express
+    app.get('/user/:id', function(req, res){
+        res.send(`You requested to see a profile with the id of ${req.params.id}`);
+    });
+        
+    // app.get('/index', function(req, res){
+    //     console.log(`GET ${req.url}`);
+    //     res.sendFile(__dirname + '/index.html');
+    // });
+    // app.get('/contact', function(req, res){
+    //     console.log(`GET ${req.url}`);
+    //     res.sendFile(__dirname + '/contact.html');
+    // });
+
+    //Templating Engines -- embed data into html files
+            //We will use EJS - npm install ejs
+        //Firt lets tell Express that we want to use ejs as our view engine
+
+        app.set('view engine', 'ejs');
+        //create a view folder and a file in it called profile.ejs
+        app.get('/profile/:id', function(req, res){
+            if(req.params.id == 1){
+                var data = {name: 'Beninja',age: 23, job: 'infosec', hobbies: ['swimming', 'coding', 'Touring']};
+            }else if(req.params.id == 2){
+                var data = {name: 'Abinja',age: 25, job: 'infosec', hobbies: ['swimming', 'coding', 'Loving']};
+            }else if(req.params.id == 3){
+                var data = {name: 'Elinja',age: 28, job: 'Financer', hobbies: ['Pooling', 'Studying', 'Touring']};
+            }else{
+                var data = {name: '',age: 0, job: '', hobbies: ['', '', '']};
+            }
+            
+            res.render('profile',{person : req.params.id, data: data} );
+        });
+
+        //Partial Views
+            app.get('/', function(req, res){
+                console.log(`GET ${req.url}`);
+                res.render('index');
+            });
+            app.get('/index', function(req, res){
+                console.log(`GET ${req.url}`);
+                res.render('index');
+            });
+            app.get('/contact', function(req, res){
+                console.log(`GET ${req.url}`);
+                res.render('contact');
+            });
+
+    app.listen(3000);
+
+    console.log('Listening on port 3000:');
+
+
