@@ -409,7 +409,7 @@
             res.render('profile',{person : req.params.id, data: data} );
         });
 
-        //Partial Views
+    //Partial Views
             app.get('/', function(req, res){
                 console.log(`GET ${req.url}`);
                 res.render('index');
@@ -422,6 +422,9 @@
                 console.log(`GET ${req.url}`);
                 res.render('contact');
             });
+    
+    //serving static files (& Middleware) e.g style files
+    app.use('/assets', express.static('assets'));
 
     app.listen(3000);
 
