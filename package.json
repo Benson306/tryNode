@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Benson306/tryNode/issues"
   },
-  "homepage": "https://github.com/Benson306/tryNode#readme"
+  "homepage": "https://github.com/Benson306/tryNode#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }

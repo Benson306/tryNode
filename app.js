@@ -285,7 +285,7 @@
             // let http = require('http');
             // var server = http.createServer(function(req, res){
             //     console.log('request was made: '+ req.url);
-            //     if(req.url === '/home' || req.url === '/'){
+            //     if(req.url === '/home' || req.url === '/' || req.url == `/index`){
             //         res.writeHead(200, {'Content-Type':'text/html' });
             //         fs.createReadStream(__dirname+'/index.html').pipe(res);
             //     }else if(req.url === '/contact'){
@@ -343,3 +343,27 @@
 
 //package.json file - npm init 
     //to intall dependancies- npm install
+
+//installing Nodemon - monitors application files i.e restarts server when file is changed
+        // npm install -g nodemon --installs it globally
+
+
+    //Trial
+        // const fs = require('fs');
+        // let http = require('http');
+
+        // let server = http.createServer(function(req, res){
+        //     console.log(`Request was made to ${req.url}`);
+        //     if(req.url === '/index'){
+        //         res.writeHead(200, { 'Content-Type':'text/plain'})
+        //         let file = fs.createReadStream(__dirname+'/lorem.txt', 'utf-8').pipe(res)
+        //     }else{
+        //         res.end('Yap, You are here');
+        //     }
+            
+        // });
+
+        // server.listen(3000,'127.0.0.1');
+        // console.log('Listening on port 3000');
+
+//Intro to Express
