@@ -418,13 +418,21 @@
                 console.log(`GET ${req.url}`);
                 res.render('index');
             });
-            app.get('/contact', function(req, res){
-                console.log(`GET ${req.url}`);
-                res.render('contact');
-            });
+            // app.get('/contact', function(req, res){
+            //     console.log(`GET ${req.url}`);
+            //     res.render('contact');
+            // });
     
     //serving static files (& Middleware) e.g style files
     app.use('/assets', express.static('assets'));
+
+    //Query Strings - mysite.com/blog/news?page=2
+    app.get('/contact', function(req, res){
+        res.render('contact', {qs: req.query}); //passing query string to contact page
+    });
+
+    //POST Request
+    
 
     app.listen(3000);
 
