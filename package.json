@@ -1,0 +1,19 @@
+{
+  "name": "trynode",
+  "version": "1.0.0",
+  "description": "a little learning",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/Benson306/tryNode.git"
+  },
+  "author": "me",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Benson306/tryNode/issues"
+  },
+  "homepage": "https://github.com/Benson306/tryNode#readme"
+}

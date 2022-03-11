@@ -326,19 +326,20 @@
 
 //Node Package Manager(npm) - install, update and come up with our own packages
         //for express - npm install express
-    let express = require('express');
-    const res = require('express/lib/response');
+    // let express = require('express');
+    // const res = require('express/lib/response');
 
-    let app = express();
+    // let app = express();
 
-    app.get('/', function(req, res){
-        res.send('Hello Express');
-    })
-    app.get('/home', function(req, res){
-        res.send('Hello Home');
-    })
+    // app.get('/', function(req, res){
+    //     res.send('Hello Express');
+    // })
+    // app.get('/home', function(req, res){
+    //     res.send('Hello Home');
+    // })
 
+    // app.listen(3000);
+    // console.log('Listening on Port 3000');
 
-
-    app.listen(3000);
-    console.log('Listening on Port 3000');
+//package.json file - npm init 
+    //to intall dependancies- npm install
