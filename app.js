@@ -431,8 +431,13 @@
         res.render('contact', {qs: req.query}); //passing query string to contact page
     });
 
-    //POST Request
-    
+    //POST Request - we use body parser - npm install body-parser
+    let bodyParser = require('body-parser');
+    let urlencodedParser = bodyParser.urlencoded({ extended: false });
+    app.post('/contact', urlencodedParser, function(req, res){
+        //console.log(req.body.who);
+        res.render('contact-success', {data: req.body}); 
+    });
 
     app.listen(3000);
 
